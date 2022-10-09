@@ -1,13 +1,13 @@
-import throttle from "lodash.throttle";
-const textInput = document.querySelector(".feedback-form");
-const emailInput = document.querySelector("input");
-const messageInput = document.querySelector("textarea");
+import throttle from 'lodash.throttle';
+const textInput = document.querySelector('.feedback-form');
+const emailInput = document.querySelector('input');
+const messageInput = document.querySelector('textarea');
 const info = {
-  email: "",
-  message: "",
+  email: '',
+  message: '',
 };
 // console.log(localStorage.clear());
-const dataStored = JSON.parse(localStorage.getItem("feedback-form-state"));
+const dataStored = JSON.parse(localStorage.getItem('feedback-form-state'));
 if (dataStored !== null) {
   //   emailInput.value = "";
   //   messageInput.innerHTML = "";
@@ -18,30 +18,30 @@ if (dataStored !== null) {
   info.message = dataStored.message;
 }
 // console.log(dataStored);
-textInput.addEventListener("input", (event) => {
-  if (event.target.type === "email") {
+textInput.addEventListener('input', event => {
+  if (event.target.type === 'email') {
     info.email = event.target.value;
     load(info);
-  } else if (event.target.type === "textarea") {
+  } else if (event.target.type === 'textarea') {
     info.message = event.target.value;
     load(info);
   }
   //   load(info);
 });
-textInput.addEventListener("submit", (event) => {
+textInput.addEventListener('submit', event => {
   event.preventDefault();
   const {
     elements: { email, message },
   } = event.currentTarget;
 
-  if (email.value === "" || message.value === "") {
-    return console.log("Please fill in all the fields!");
+  if (email.value === '' || message.value === '') {
+    return console.log('Please fill in all the fields!');
   }
-  localStorage.clear();
+  localStorage.removeItem('feedback-form-state');
   event.currentTarget.reset();
   console.log(info);
 });
 var load = throttle(function (data) {
-  localStorage.setItem("feedback-form-state", JSON.stringify(data));
+  localStorage.setItem('feedback-form-state', JSON.stringify(data));
   //   console.log(data);
 }, 500);
