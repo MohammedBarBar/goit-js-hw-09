@@ -1,6 +1,6 @@
-import Player from "@vimeo/player";
-import throttle from "lodash.throttle";
-const iframe = document.querySelector("iframe");
+import Player from '@vimeo/player';
+import throttle from 'lodash.throttle';
+const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 let sec = 0;
 const onPlay = function (data) {
@@ -9,13 +9,14 @@ const onPlay = function (data) {
 };
 
 const onPause = function (data) {
-  localStorage.setItem("videoplayer-current-time", data.seconds);
+  localStorage.setItem('videoplayer-current-time', data.seconds);
 };
-
-player.setCurrentTime(localStorage.getItem("videoplayer-current-time"));
+// console.log(localStorage.getItem('videoplayer-current-time'));
+if (localStorage.getItem('videoplayer-current-time') !== null)
+  player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
 
 var load = throttle(function (data) {
-  localStorage.setItem("videoplayer-current-time", data);
+  localStorage.setItem('videoplayer-current-time', data);
 }, 1000);
 
 var loop = function () {
@@ -25,6 +26,6 @@ var loop = function () {
 
 loop();
 
-player.on("timeupdate", onPlay);
+player.on('timeupdate', onPlay);
 
-player.on("pause", onPause);
+player.on('pause', onPause);
