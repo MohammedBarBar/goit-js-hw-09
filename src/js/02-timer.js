@@ -60,6 +60,8 @@ function convertMs(ms) {
 }
 
 start.addEventListener('click', () => {
+  start.disabled = true;
+  inputDate.disabled = true;
   var x = setInterval(function () {
     var distance = dateSelected.getTime() - new Date().getTime();
     var counter = convertMs(distance);

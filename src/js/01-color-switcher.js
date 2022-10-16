@@ -1,6 +1,7 @@
 const start = document.querySelector('[data-start]');
 const stop = document.querySelector('[data-stop]');
 let timerId = null;
+stop.disabled = true;
 
 const startButton = () => {
   start.disabled = true;
